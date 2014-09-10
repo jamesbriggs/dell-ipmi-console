@@ -10,6 +10,7 @@ gocons.pl is a wrapper for ipmitool and Dell IPMI that:
 
 gocons.pl has been extensively tested on Dell 1950 and 2950 servers.
 
+<pre>
 # gocons -h
 /usr/local/bin/gocons version 0.5
 
@@ -38,4 +39,4 @@ Examples:
 /usr/local/bin/gocons -h 127.0.0.1 -u -v  # display user list for IP address 127.0.0.1, verbosely
 /usr/local/bin/gocons --help              # this help
 /usr/local/bin/gocons --version           # this help
-
+</pre>
