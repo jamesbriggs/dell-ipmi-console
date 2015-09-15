@@ -12,7 +12,7 @@ gocons.pl has been extensively tested on Dell 1950 and 2950 servers.
 
 <pre>
 # gocons -h
-/usr/local/bin/gocons version 0.5
+/usr/local/bin/gocons version 0.6
 
 usage: /usr/local/bin/gocons -h hostname|ip [ -adhpsuv --help --version ]
 

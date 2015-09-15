@@ -2,7 +2,6 @@
 
 # Program: gocons.pl
 # Purpose: ipmitool wrapper
-# Licence: GPL2
 # Copyright 2013 James Briggs, San Jose, California, USA.
 # Date: 2013 07 04
 # Note: ln -s /usr/local/bin/gocons.pl /usr/local/bin/gocons
@@ -15,7 +14,7 @@ $Getopt::Std::STANDARD_HELP_VERSION = 1;
 
 #   $ENV{'PATH'} = '';
 
-   my $VERSION = '0.5';
+   my $VERSION = '0.6';
 
 # customize here ...
    my $DEBUG = 0;
@@ -94,6 +93,7 @@ $Getopt::Std::STANDARD_HELP_VERSION = 1;
       usage() if $o_sel !~ /^(list|clear|info)$/;
    }
 
+
    $o_users      = $opt_u; # user list
 
    $o_verbose    = $opt_v;
@@ -138,7 +138,7 @@ $Getopt::Std::STANDARD_HELP_VERSION = 1;
       $cmd = "$cmd_ipmi -I lanplus -H $ip -U $username -P $password sol deactivate";
    }
    elsif ($o_delloem) {
-      $cmd = "$cmd_ipmi -H $ip -U $username -P $password delloem $o_delloem";
+      $cmd = "$cmd_ipmi -H $ip -U $username -P $password delloem '$o_delloem'";
    }
    elsif ($o_power) {
       $cmd = "$cmd_ipmi -H $ip -U $username -P $password power $o_power";
@@ -159,9 +159,9 @@ $Getopt::Std::STANDARD_HELP_VERSION = 1;
       usage();
    }
 
+   my $s = $cmd;
+   $s =~ s/$password/xxxxxx/g if $password ne '';
    if ($o_verbose) {
-      my $s = $cmd;
-      $s =~ s/$password/xxxxxx/g if $password ne '';
       print "cmd=$s\n";
    }
 
@@ -170,7 +170,7 @@ $Getopt::Std::STANDARD_HELP_VERSION = 1;
       ### print "host $o_host: $r";
       my @args = split(/ +/, $cmd);
       print "$msg\n" if $msg ne '';
-      system(@args) == 0 or die "system @args failed: $?"
+      system(@args) == 0 or die "system $s failed"
    }
 
 sub usage {
