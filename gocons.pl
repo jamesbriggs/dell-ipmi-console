@@ -93,7 +93,6 @@ $Getopt::Std::STANDARD_HELP_VERSION = 1;
       usage() if $o_sel !~ /^(list|clear|info)$/;
    }
 
-
    $o_users      = $opt_u; # user list
 
    $o_verbose    = $opt_v;
